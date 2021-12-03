@@ -1,0 +1,29 @@
+name: Create PR with dependencies to main
+on: workflow_dispatch
+
+jobs:
+  run_checks:
+    name: Create pull request to main branch
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout dependencies branch
+        uses: actions/checkout@v2
+        with:
+          ref: dependencies-update
+      - name: Update dependencies branch from main
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git merge origin/main
+      - name: Push updated dependencies branch
+        run: |
+          git push origin
+      - name: Create pull request
+        uses: gha-utilities/init-pull-request@v0.3.2
+        with:
+          verbose: true
+          pull_request_token: ${{ secrets.GITHUB_TOKEN }}
+          head: dependencies-update
+          base: main
+          title: 'Update dependencies in batch'
