@@ -31,3 +31,4 @@ jobs:
           destination_branch: main
           pr_title: 'Update dependencies in batch'
           pr_label: dependencies
+          github_token: ${{ secrets.GITHUB_TOKEN }}
