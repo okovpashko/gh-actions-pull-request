@@ -20,7 +20,7 @@ jobs:
         run: |
           git push origin
       - name: Create pull request
-        uses: gha-utilities/init-pull-request@v0.3.2
+        uses: gha-utilities/init-pull-request@v0.2.4
         with:
           verbose: true
           pull_request_token: ${{ secrets.GITHUB_TOKEN }}
