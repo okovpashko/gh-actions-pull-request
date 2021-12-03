@@ -25,10 +25,9 @@ jobs:
         with:
           ref: main
       - name: Create pull request
-        uses: gr2m/create-or-update-pull-request-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: repo-sync/pull-request@v2
         with:
-          branch: dependencies-update
-          base: main
-          title: 'Update dependencies in batch'
+          source_branch: dependencies-update
+          destination_branch: main
+          pr_title: 'Update dependencies in batch'
+          pr_label: dependencies
